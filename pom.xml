@@ -21,6 +21,15 @@
 			<artifactId>scala-library</artifactId>
 			<version>${scala.version}</version>
 		</dependency>
+		
+		<!-- Local dependencies that aren't in a Maven Repo (in lib directory) -->
+		<dependency>
+			<groupId>net.davidashen</groupId>
+			<artifactId>texhyphj</artifactId>
+			<version>1.1</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/texhyphj.jar</systemPath>
+		</dependency>
 
 		<!-- Test -->
 		<dependency>
