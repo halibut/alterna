@@ -20,6 +20,11 @@ class Random(val seed: Long = new Date().getTime()) {
   def randDouble: Double = {
     rand.nextDouble()
   }
+  
+  def hitOdds(chance:Int,outOf:Int):Boolean = {
+    val limit = chance.toDouble / outOf.toDouble
+    randDouble <= limit
+  }
 
   private def seed(seed: Long): Unit = {
     rand.setSeed(seed);

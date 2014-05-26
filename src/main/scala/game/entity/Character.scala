@@ -64,7 +64,7 @@ class Character {
         fName
     }
     
-    def setHeadOfFamily(family:Family) = {
+    def setHeadOfFamily(family:Family):Unit = {
       if(headOfFamily isEmpty){
         headOfFamily = Some(family)
         family.addHead(this)
@@ -74,7 +74,7 @@ class Character {
       }
     }
     
-    def addMember(family:Family) = {
+    def addMember(family:Family):Unit = {
       if(inFamily isEmpty){
         inFamily = Some(family)
         family.addMember(this)
@@ -82,5 +82,12 @@ class Character {
       else if(inFamily.get != family){
         throw new IllegalStateException("Already in a different family: "+ lastName +". You must remove character from that family first.")
       }
+    }
+    
+    def moveLocation(location:Location) = {
+      this.location.foreach{oldLoc =>
+        oldLoc.removeCharacter(this)
+      }
+      this.location = Some(location)
     }
 }

@@ -41,9 +41,10 @@ class WorldBuilder {
   private def initWorld(world: World) {
     val lastNameGen = new WordGenerator("data/last-names-3char-freqs.txt", 3)
 
-    world.locations = LocationNames.names.toSeq.map { nm =>
+    world.locations = 0 until noLocations map { nm =>
       val loc = new Location() {
-        name = LocationNames.locPrefixes.getItem + nm + LocationNames.locSuffixes.getItem
+        
+        name = LocationNames.getName("", 4, 5)
         println("Location: " + name)
       };
 
