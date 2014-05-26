@@ -19,7 +19,7 @@ Sudden
 St. 
 Flaccid 
 Placid 
-Lego
+Lego-
 Rainy 
 Sullen 
 Metro
@@ -29,7 +29,8 @@ Balmy
 Breezy 
 Fort 
 Liberated 
-Sunny
+Sunny 
+Cloudy 
 Ravaged 
 Sparkling 
 Godforsaken 
@@ -37,7 +38,27 @@ Shitty
 Grand 
 Forgotten 
 Floundering 
+Greater 
+Lesser 
 Prosperous 
 True 
 Lovely 
 Pungent 
+Shady 
+Desolate 
+Bustling 
+Post-
+Whispering 
+Lone 
+Bland 
+Dreamy 
+Nightmare 
+Deadliest 
+Middle 
+Oppressed 
+
+Wallowing 
+The Last 
+Prosperous 
+Cranky 
+Kooky 

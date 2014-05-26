@@ -13,7 +13,7 @@ Wilhelmina, William
 Theodora, Theodore
 Henrietta, Henry
 Stephanie, Stephen
-Paul, Paula
+Paula, Paul
 Martina, Martin
 Carla, Carl
 Raphaela, Raphael
@@ -37,6 +37,7 @@ Leona, Leo
 Estelle, Esteban
 Samantha, Sam
 Ophelia, Orpheus
+VanHelga, VanHelsing
 Romea, Romeo
 Adele, Adel
 Alastria, Alaster
@@ -226,7 +227,7 @@ Ann, Anos
 Piersynne, Pierce
 Shirley, Shurlo
 Treya, Troy
-Craigette, Craig
+Craega, Craig
 Bannie, Ben
 Iana, Ian
 Bazz, Buzz
@@ -238,7 +239,7 @@ Deandra, Dean
 Yevette, Yevon
 Kimbette, Kombat
 Dawn, Donald
-Tina, Tony
+Toni, Tony
 Sandra, Sanders
 Malory, Mal
 Cyrilla, Cyril
@@ -255,3 +256,17 @@ Fortaleza, Fort
 Batmin, Batman
 Robata, Roboto
 Comette, Comet
+Aelyn, Aelin
+Andi, Andy
+Barbisby, Bartelsby
+Francine, Francis
+Fluffy, Fluffles
+Wanda, Wander
+Endra, Ender
+Sylrad, Soulrod
+Grenadine, Grenade
+Bagel, Bogul
+Slava, Slov
+Jayne, J
+Bish, Bush
+Despair, Desperado

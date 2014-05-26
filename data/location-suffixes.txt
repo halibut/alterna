@@ -1,5 +1,6 @@
  Shire
 burg
+berg
 ville
 ton
 wood
@@ -30,13 +31,16 @@ grad
  Gardens
 land
 's Bluff
-'s Cliff
+ Cliff
  Estates
 's Shade
  Meadows
  Village
  Settlement
+ Swamp
  Harbor
+ Hollow
+furt
  Ridge
  Bay
 's Edge
@@ -49,7 +53,11 @@ land
  Front
 ford
  Rapids
- Comet
 -3
 's Nest
  Pit
+ Mill
+'s Pillar
+'s Mistake
+'s Den
+'s Bush

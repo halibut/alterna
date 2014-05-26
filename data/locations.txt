@@ -43,7 +43,7 @@ Sacramende
 Babylon
 Thebes
 Caracas
-valencia
+Valencia
 Fortaleza
 Salvador
 Medellin
@@ -61,3 +61,12 @@ Zurich
 Geneva
 Torrance
 Atlanta
+Okinawa
+Joplin
+Missoula
+Liberal
+Norman
+Billings
+Baller
+Charlotte
+Phoenix
