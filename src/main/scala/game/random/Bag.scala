@@ -1,6 +1,6 @@
 package game.random
 
-class Bag[T](val items:Seq[(T,Int)]) {
+class Bag[T](val items:Seq[(T,Int)], val rnd:Random = Random.bagRand) {
 
     val total:Int = items.map{case(item,chances) => chances}.sum
     
@@ -11,16 +11,16 @@ class Bag[T](val items:Seq[(T,Int)]) {
     }
     
     def get:T = {
-      val rnd = Random.bagRand.randDouble
+      val rndDbl = rnd.randDouble
       var cur = 0.0
       
       val itr = probs.iterator
       
-      while(itr.hasNext && rnd >= cur){
+      while(itr.hasNext && rndDbl >= cur){
           val item = itr.next();
           
           cur += item._2
-          if(cur >= rnd){
+          if(cur >= rndDbl){
               return item._1
           }
       }
