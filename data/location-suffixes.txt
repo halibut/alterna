@@ -22,7 +22,6 @@ ia
 's Meadow
  Falls
 's Branch
-'s Harvest
 opolis
 grad
  Peak
@@ -37,3 +36,20 @@ land
  Meadows
  Village
  Settlement
+ Harbor
+ Ridge
+ Bay
+'s Edge
+ Haven
+ Angeles
+ Dump
+ Terrace
+ Heights
+ Beach
+ Front
+ford
+ Rapids
+ Comet
+-3
+'s Nest
+ Pit
