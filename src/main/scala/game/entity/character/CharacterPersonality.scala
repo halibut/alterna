@@ -1,4 +1,4 @@
-package game.entity
+package game.entity.character
 
 import game.random.Random
 

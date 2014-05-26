@@ -1,10 +1,10 @@
 package game.entity.gen
 
-import game.entity.Character
-import game.entity.CharacterSex
-import game.entity.CharacterSex._
-import game.random.Bag
+import game.entity.character.Character
+import game.entity.character.CharacterSex
+import game.entity.character.CharacterSex._
 import game.entity.data.CharacterNames
+import game.random.Bag
 import game.random.Random
 
 object CharacterCreator {

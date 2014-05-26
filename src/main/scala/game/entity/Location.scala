@@ -1,6 +1,7 @@
 package game.entity
 
 import game.entity.data.LocationName
+import game.entity.character.Character
 
 class Location() {
     var name:LocationName = null;

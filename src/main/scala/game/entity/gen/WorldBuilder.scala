@@ -1,17 +1,16 @@
 package game.entity.gen
 
-import game.entity.Family
+
 import game.entity.Location
 import game.entity.World
 import game.entity.data.LocationNames
 import game.random.Bag
 import game.tools.WordGenerator
-import game.entity.Character
 import game.entity.data.CharacterNames
+import game.entity.character.Family
 
 class WorldBuilder {
 
-  var noChars: Int = 100;
   var noLocations: Int = 10;
 
   val famSizeOdds = Bag[Int](
@@ -51,8 +50,7 @@ class WorldBuilder {
       println("Families:")
       val fams = famsPerLocOdds.get
       for (famInd <- 0 until fams) {
-        var famName = lastNameGen.getWord()
-        famName = famName.head.toUpper + famName.tail
+        var famName = lastNameGen.getWord().capitalize
         
         val family = new Family()
         family.lastName = famName
@@ -60,8 +58,10 @@ class WorldBuilder {
         val famSize = famSizeOdds.get
         for (ch <- 0 until famSize) {
           val character = CharacterCreator.initCharacter
+          world.addCharacter(character)
           character.location = Some(loc)
           if (family.heads.size < 2) {
+            character.birthDate 
             family.addHead(character)
           } else {
             family.addMember(character)

@@ -1,7 +1,9 @@
-package game.entity
-import java.util.Date
+package game.entity.character
 
-import game.entity.CharacterSex._
+import game.entity.character.CharacterSex._
+import game.entity.event.LifeEvent
+import game.entity.Location
+import org.joda.time.DateTime
 
 class Character {
     
@@ -12,8 +14,8 @@ class Character {
     var inFamily:Option[Family] = None;
     var headOfFamily:Option[Family] = None;
         
-    var birthDate:Option[Date] = None;
-    var deathDate:Option[Date] = None;
+    var birthDate:Option[DateTime] = None;
+    var deathDate:Option[DateTime] = None;
     
     var lifeEvents:List[LifeEvent] = List();
     

@@ -1,4 +1,6 @@
-package game.entity
+package game.entity.character
+
+import game.entity.event.LifeEvent
 
 trait CharacterRelationship {
 
