@@ -11,16 +11,19 @@ class CharacterPersonality {
   }
   
   def update(dim:PersonalityDimension,value:Int) = {
-    dimensions = dimensions.updated(dim, value)
+    import CharacterPersonality._
+    dimensions = dimensions.updated(dim, math.min(MaxVal,math.max(MinVal,value)))
   }
   
   def randomize:Unit = {
+    import CharacterPersonality._
     dimensions = PersonalityDimension.values.map(dim => 
-      (dim,Random.rand.randInt(CharacterPersonality.MaxVal * 2 + 1) - CharacterPersonality.MaxVal -1)
+      (dim,Random.rand.randInt(MaxVal - MinVal) - MinVal)
     ).toMap
   }
 }
 
 object CharacterPersonality {
   val MaxVal = 255
+  val MinVal = 255
 }

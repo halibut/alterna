@@ -9,11 +9,18 @@ class CharacterStats {
   }
   
   def update(stat:StatType,value:Int) = {
-    stats = stats.updated(stat, math.min(CharacterStats.MaxVal,math.max(0,value)))
+    import CharacterStats._
+    stats = stats.updated(stat, math.min(MaxVal,math.max(MinVal,value)))
+  }
+  
+  def avgLevel:Int = {
+    val sum = this.stats.toSeq.map(entry => entry._2).sum.toDouble
+    (sum / stats.size.toDouble).toInt
   }
   
 }
 
 object CharacterStats{
   val MaxVal = 255
+  val MinVal = 0
 }
