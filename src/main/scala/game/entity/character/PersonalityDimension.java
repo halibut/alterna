@@ -2,7 +2,7 @@ package game.entity.character;
 
 public enum PersonalityDimension {
 	
-	Outgoing,
+	Charismatic,
 	Pacifist, 
 	Friendly, 
 	Good,
