@@ -57,7 +57,13 @@ ford
 's Nest
  Pit
  Mill
-'s Pillar
 's Mistake
 's Den
 's Bush
+vale
+ Glen
+ Commune
+ Community
+ Citadel
+wealth
+ Lagoon
