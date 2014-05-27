@@ -3,7 +3,6 @@ Type: Character
 
 Likelihood:{
  	YearlyChance(1/20)
- 	---Personality.Satisfied
 }
 
 Variables:{
@@ -55,6 +54,7 @@ Outcome:{
 		-Stat.Evasion
 		--Stat.Defense
 		-Personality.Brave
+		-Personality.Charismatic
 		+Personality.Pacifist
 		Talent.AnimalAfinity(1/5)
 	}

@@ -1,0 +1,63 @@
+Event: Suicide Attempt
+Type: Character
+
+Likelihood:{
+ 	YearlyChance(1/25)
+	---Personality.Satisfied
+}
+
+Variables:{
+	methodOfDeath = Choose(jumping off a cliff,eating a whole thing of magic beans,auto-asphyxiation,just hating ${reflexive-pronoun} to death, camoflauging ${reflexive-pronoun} to look like the street and waiting for a cart to run ${object-pronoun} over, eating ${reflexive-pronoun} alive)
+	adjective = Choose(cuddly,sweet,warm,loving,cold,welcoming)
+}
+
+Flavor Text:{
+	${name} spiraled into a deep depression and was on the verge of committing suicide.
+	${name} couldn't take it anymore and tried to kill ${reflexive-pronoun}.
+	${name} didn't think things could get any worse. ${subject-pronoun} saw that ${possessive-pronoun} only way out was through the sweet release of death... 
+}
+
+Outcome:{
+	
+	Flavor Text:{
+		But ${subject-pronoun} decided not to go through with it, thanks to the support of  ${possessive-pronoun} caring friends.
+	}
+	Depends On:{ 
+		+Personality.Friendly
+	}
+	Result:{
+		++Personality.Friendly
+		+Personality.Satisfied
+	}
+}
+
+Outcome:{
+	
+	Flavor Text:{
+		But ${subject-pronoun} wussed out and lived on.
+	}
+	Depends On:{ 
+		--Personality.Brave
+	}
+	Result:{
+		+Personality.Pacifist
+		-Personality.Brave
+		-Personality.Satisfied
+	}
+}
+
+Outcome:{
+	
+	Flavor Text:{
+		And so ${subject-pronoun} went through with it by ${methodOfDeath}.
+		And so ${subject-pronoun} finished ${reflexive-pronoun} by ${methodOfDeath}.
+		And so ${subject-pronoun} walked into Death's ${adjective} embrace by ${methodOfDeath}.
+	}
+	Depends On:{ 
+		---Personality.Friendly
+		+Personality.Brave
+	}
+	Result:{
+		Event.Death
+	}
+}

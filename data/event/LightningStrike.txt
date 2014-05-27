@@ -1,0 +1,97 @@
+Event: Lightning Strike
+Type: Character
+
+Likelihood:{
+ 	YearlyChance(1/100)
+}
+
+Variables:{
+
+}
+
+Flavor Text:{
+	${name} was struck by lightning!
+	While ${name} was playing with ${possessive-pronoun} set of giant metal rods one stormy day, ${subject-pronoun} was struck by lightning!
+}
+
+Outcome:{
+	
+	Flavor Text:{
+		But ${subject-pronoun} survived and actually felt strangely invigorated...
+	}
+	Depends On:{ 
+		++Stat.MagicDefense
+		+++Stat.Luck
+	}
+	Result:{
+		++Stat.MagicDefense
+		+Personality.Brave
+		Talent.ShockEater(1/1)
+	}
+}
+
+Outcome:{
+	
+	Flavor Text:{
+		But ${subject-pronoun} survived it, no sweat!
+	}
+	Depends On:{ 
+		++Stat.MagicDefense
+		+Stat.Luck
+	}
+	Result:{
+		++Stat.MagicDefense
+		+Personality.Brave
+		Talent.Shockproof(1/1)
+	}
+}
+
+
+Outcome:{
+	
+	Flavor Text:{
+		${subject-pronoun} survived, but just barely.
+	}
+	Depends On:{ 
+		+Stat.MagicDefense
+	}
+	Result:{
+		Flaw.Shockophobe(1/4)
+		+Stat.MagicDefense
+		--Personality.Satisfied
+		--Personality.Brave
+	}
+}
+
+Outcome:{
+	
+	Flavor Text:{
+		Or so it would seem. Thankfully, ${name} managed to dodge it just in time!
+		At least, ${subject-pronoun} almost was. Luckily ${name} managed to scurry out of the way just in the nick of time!  
+	}
+	Depends On:{ 
+		++Stat.Evasion
+		+Stat.Speed
+	}
+	Result:{
+		+++Stat.Evasion
+		++Stat.Speed
+		+Personality.Brave
+	}
+}
+
+Outcome:{
+	Flavor Text:{
+		And ${subject-pronoun} was killed instantly.
+		And ${subject-pronoun} just didn't stand a chance. 
+		And ${subject-pronoun} was toast.
+	}
+	Depends On:{
+		--Stat.Evasion
+		-Stat.Speed
+		--Stat.MagicDefense
+	}
+	Result:{
+		Event.Death
+	}
+}

@@ -1,0 +1,47 @@
+Event: Bad Haircut
+Type: Character
+
+Likelihood:{
+ 	YearlyChance(1/5)
+	--Stat.Luck
+}
+
+Variables:{
+	adjective = Choose(terrible,horrible,bad,ridiculous,really stupid fucking)
+}
+
+Flavor Text:{
+	${name} went to the local salon and got a ${adjective} haircut.  
+}
+
+Outcome:{
+	
+	Flavor Text:{
+		But ${subject-pronoun} totally rocked it anyway!
+	}
+	Depends On:{ 
+		+++Personality.Charismatic
+	}
+	Result:{
+		++Personality.Charismatic
+		+Personality.Brave
+		+Stat.MagicDefense
+	}
+}
+
+Outcome:{
+	
+	Flavor Text:{
+		And ${subject-pronoun} was the laughingstock of the whole town for a couple of months.
+		And it was super fucking embarrassing.
+		And ${name} wouldn't even leave ${possessive-pronoun} room for an enire month.
+	}
+	Depends On:{ 
+		-Personality.Charismatic
+	}
+	Result:{
+		--Personality.Charismatic
+		-Stat.MagicDefense
+		+Stat.Evasion
+	}
+}
