@@ -23,5 +23,6 @@ class World {
     
     def addCharacter(character:Character):Unit = {
       characters = characters.filterNot(_ == character) :+ character
+      character.world = Some(this)
     }
 }

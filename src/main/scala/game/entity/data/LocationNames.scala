@@ -49,4 +49,10 @@ object LocationNames {
       
       new LocationName(bName, p, s)
     }
+    
+    def main(args: Array[String]):Unit = {
+      for(i <- 0 until 100){
+        println(getName())
+      }
+    }
 }

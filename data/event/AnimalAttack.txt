@@ -1,0 +1,76 @@
+Event: Animal Attack
+Type: Character
+
+Likelihood:{
+ 	YearlyChance(1/20)
+ 	---Personality.Satisfied
+}
+
+Variables:{
+	animal = Choose(a bear,a cat,a giraffe,an ocelot,a swarm of bees,a wolf,a moose)
+}
+
+Flavor Text:{
+	${name} was attacked by ${animal}!
+	While ${name} was sleeping, ${animal} smashed through the window and tried to eat ${object-pronoun}!  
+}
+
+Outcome:{
+	
+	Flavor Text:{
+		But ${subject-pronoun} fought it off!
+		But ${subject-pronoun} escaped with ${possessive-pronoun} life!
+	}
+	Depends On:{ 
+		++Stat.Strength
+		+Stat.Defense
+		+Stat.Evasion
+		+++Stat.Luck
+		+Personality.Brave
+		-Personality.Pacifist
+	}
+	Result:{
+		++Stat.Strength
+		+Stat.Evasion
+		+Stat.Luck
+		+Personality.Brave
+		-Personality.Pacifist
+		Talent.AnimalAfinity(1/5)
+	}
+}
+
+Outcome:{
+	
+	Flavor Text:{
+		And ${subject-pronoun} was maimed.
+		And it seriously wounded ${object-pronoun}.
+	}
+	Depends On:{ 
+		--Stat.Strength
+		--Stat.Luck
+		+++Personality.Pacifist
+	}
+	Result:{
+		-Stat.Strength
+		-Stat.Evasion
+		--Stat.Defense
+		-Personality.Brave
+		+Personality.Pacifist
+		Talent.AnimalAfinity(1/5)
+	}
+}
+
+Outcome:{
+	Flavor Text:{
+		And ${subject-pronoun}... lost ${posessive-pronoun} life.
+		But ${subject-pronoun} was overpowered and died.
+	}
+	Depends On:{
+		---Stat.Strength
+		---Stat.Luck
+		+++Personality.Pacifist
+	}
+	Result:{
+		Event.Death
+	}
+}

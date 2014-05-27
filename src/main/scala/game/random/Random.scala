@@ -8,6 +8,10 @@ class Random(val seed: Long = new Date().getTime()) {
   def randInt(max: Int): Int = {
     rand.nextInt(max)
   }
+  
+  def randInt(min:Int, max: Int): Int = {
+    rand.nextInt(max-min)+min
+  }
 
   def randInt = {
     rand.nextInt()

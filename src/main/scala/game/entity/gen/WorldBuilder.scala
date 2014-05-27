@@ -8,6 +8,13 @@ import game.random.Bag
 import game.tools.WordGenerator
 import game.entity.data.CharacterNames
 import game.entity.character.Family
+import game.random.Random
+import game.entity.event.LifeEvent
+import game.entity.event.LifeEventType
+import org.joda.time.DateTime
+import game.entity.character.Relationship
+import game.entity.character.RelationshipType
+import game.entity.character.CharacterEventHelper
 
 class WorldBuilder {
 
@@ -28,6 +35,8 @@ class WorldBuilder {
     10 -> 3,
     15 -> 2,
     20 -> 1)
+    
+  lazy val lastNameGen = new WordGenerator("data/last-names-3char-freqs.txt", 3)
 
   def generateWorld: World = {
     val world = new World();
@@ -37,36 +46,56 @@ class WorldBuilder {
     world;
   }
 
+  def createFamily(size: Int, loc:Location): Family = {
+    import LifeEventType._
+    import RelationshipType._
+    
+    val world = loc.world.get
+    var famName = lastNameGen.getWord().capitalize
+    val family = new Family()
+    family.lastName = famName
+    for (ch <- 0 until size) {
+      val character = CharacterCreator.initCharacter
+      world.addCharacter(character)
+      character.location = Some(loc)
+      
+      if (family.heads.size < 2) {
+        val birthDate = world.year.year().addToCopy(-20 - Random.rand.randInt(40))
+        character.birthDate = Some(birthDate)
+        family.addHead(character)
+        CharacterEventHelper.birth(None, character)
+      } else {
+        val birthDate = world.year.year().addToCopy(-Random.rand.randInt(20))
+        character.birthDate = Some(birthDate)
+        CharacterEventHelper.birth(Some(family), character)
+      }
+    }
+    
+    //Set marriage relationship
+    for(p1 <- family.head1; p2 <- family.head2){
+      val mDate = world.year.year().addToCopy(-Random.rand.randInt(20))
+      CharacterEventHelper.marry(p1,p2,mDate,20 + Random.rand.randInt(20,255), Random.rand.randInt(20,255))
+    }
+    
+    family
+  }
+
   private def initWorld(world: World) {
-    val lastNameGen = new WordGenerator("data/last-names-3char-freqs.txt", 3)
+    world.year = world.year.year().addToCopy(200)
 
     world.locations = 0 until noLocations map { nm =>
       val loc = new Location() {
-        
         name = LocationNames.getName("", 4, 5)
         println("Location: " + name)
       };
+      loc.world = Some(world)
+     
 
       println("Families:")
       val fams = famsPerLocOdds.get
       for (famInd <- 0 until fams) {
-        var famName = lastNameGen.getWord().capitalize
-        
-        val family = new Family()
-        family.lastName = famName
-
         val famSize = famSizeOdds.get
-        for (ch <- 0 until famSize) {
-          val character = CharacterCreator.initCharacter
-          world.addCharacter(character)
-          character.location = Some(loc)
-          if (family.heads.size < 2) {
-            character.birthDate 
-            family.addHead(character)
-          } else {
-            family.addMember(character)
-          }
-        }
+        val family = createFamily(famSize, loc)
         
         println(family)
         println("\n\n")
@@ -76,19 +105,15 @@ class WorldBuilder {
       loc
     }
 
-    val sylBag = Bag(1 -> 10, 2 -> 20, 3 -> 20, 4 -> 20, 5 -> 10, 6 -> 3, 7 -> 1)
-
-//    println("\n\n-------")
-//    println(FamilyName.generateName(sylBag.get).name)
-//    println(FamilyName.generateName(sylBag.get).name)
-//    println(FamilyName.generateName(sylBag.get).name)
-//    println(FamilyName.generateName(sylBag.get).name)
-//    println(FamilyName.generateName(sylBag.get).name)
-//    println(FamilyName.generateName(sylBag.get).name)
-//    println(FamilyName.generateName(sylBag.get).name)
-//    println(FamilyName.generateName(sylBag.get).name)
-//    println(FamilyName.generateName(sylBag.get).name)
-//    println(FamilyName.generateName(sylBag.get).name)
+   
+    for(ch <- world.characters){
+      println("Character: " + ch.basicInfo(true))
+      println("Relationships: ")
+      println("  "+ch.relationships.toString.replaceAll("\n","\n  "))
+      println("Life Events: ")
+      println("  "+ch.lifeEvents.toString.replaceAll("\n","\n  "))
+      println("\n\n------------------------------------------")
+    }
   }
 
 }

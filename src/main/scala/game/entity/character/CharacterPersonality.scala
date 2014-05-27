@@ -2,24 +2,6 @@ package game.entity.character
 
 import game.random.Random
 
-trait PersonalityDimension{
-  val name:String
-  PersonalityDimension.values = PersonalityDimension.values ::: List(this)
-}
-
-object PersonalityDimension{
-  var values:List[PersonalityDimension] = List()
-  val maxVal = 255
-  
-  case object Outgoing extends PersonalityDimension{val name="Outgoing"}
-  case object Pacifist extends PersonalityDimension{val name="Pacifist"}
-  case object Friendly extends PersonalityDimension{val name="Friendly"}
-  case object Good extends PersonalityDimension{val name="Good"}
-  case object Hardworking extends PersonalityDimension{val name="Hardworking"}
-  case object Brave extends PersonalityDimension{val name="Brave"}
-  case object Generous extends PersonalityDimension{val name="Generous"}
-}
-
 class CharacterPersonality {
 
   private var dimensions = PersonalityDimension.values.map(dim => (dim,0)).toMap
@@ -34,8 +16,11 @@ class CharacterPersonality {
   
   def randomize:Unit = {
     dimensions = PersonalityDimension.values.map(dim => 
-      (dim,Random.rand.randInt(PersonalityDimension.maxVal * 2 + 1) - PersonalityDimension.maxVal -1)
+      (dim,Random.rand.randInt(CharacterPersonality.MaxVal * 2 + 1) - CharacterPersonality.MaxVal -1)
     ).toMap
   }
-    
+}
+
+object CharacterPersonality {
+  val MaxVal = 255
 }
