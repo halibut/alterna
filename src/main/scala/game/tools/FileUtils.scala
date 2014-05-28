@@ -21,4 +21,24 @@ object FileUtils {
       p.close()
     }
   }
+  
+  def readConfig(fileName: String):Config = {
+    val lines = getFileLines(fileName)
+    
+    readConfig(lines)
+  }
+  
+  def readConfig(lines:Seq[String]):Config = {
+    var properties = Seq[(String,Config)]()
+    
+    var curElement:Seq[String] = null
+    var curProp:String = null
+    for(line <- lines; if (!line.trim().isEmpty())){
+      if(curProp == null){
+        
+      }
+    }
+    
+    new ComplexConfig(properties)
+  }
 }

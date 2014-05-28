@@ -14,7 +14,7 @@ Flavor Text:{
 	One day, while ${name} was out and about, minding ${possessive-pronoun} own business, a fire${animal} launched a flameball right at ${possessive-pronoun} ${bodyPart} for no fucking reason whatsoever! (Dick).
 }
 
-Outcome:{
+Outcome 1:{
 	
 	Flavor Text:{
 		But ${subject-pronoun} survived. Heck, more than survived--${name} actually felt all the better for it!
@@ -30,7 +30,7 @@ Outcome:{
 	}
 }
 
-Outcome:{
+Outcome 2:{
 	
 	Flavor Text:{
 		But ${subject-pronoun} survived it, no sweat! Didn't even hurt.
@@ -47,7 +47,7 @@ Outcome:{
 }
 
 
-Outcome:{
+Outcome 3:{
 	
 	Flavor Text:{
 		${subject-pronoun} survived, but only just.
@@ -63,7 +63,7 @@ Outcome:{
 	}
 }
 
-Outcome:{
+Outcome 4:{
 	
 	Flavor Text:{
 		Thankfully, ${name} managed to dodge it before ${subject-pronoun} got hurt!
@@ -79,7 +79,7 @@ Outcome:{
 	}
 }
 
-Outcome:{
+Outcome 5:{
 	Flavor Text:{
 		And ${subject-pronoun} was killed instantly.
 		And ${subject-pronoun} just didn't stand a chance. 

@@ -14,7 +14,7 @@ Flavor Text:{
 	While ${name} was sleeping, ${animal} smashed through the window and tried to eat ${object-pronoun}!  
 }
 
-Outcome:{
+Outcome 1:{
 	
 	Flavor Text:{
 		But ${subject-pronoun} fought it off!
@@ -38,7 +38,7 @@ Outcome:{
 	}
 }
 
-Outcome:{
+Outcome 2:{
 	
 	Flavor Text:{
 		And ${subject-pronoun} was maimed.
@@ -60,7 +60,7 @@ Outcome:{
 	}
 }
 
-Outcome:{
+Outcome 3:{
 	Flavor Text:{
 		And ${subject-pronoun}... lost ${posessive-pronoun} life.
 		But ${subject-pronoun} was overpowered and died.

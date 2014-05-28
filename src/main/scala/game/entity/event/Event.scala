@@ -8,3 +8,10 @@ class Event(val likelihood:EventLikelihood,
     val outcomes:Seq[EventOutcome]) {
 
 }
+
+object Event{
+//  def apply(strRep:String):Event = {
+//    
+//    
+//  }
+}

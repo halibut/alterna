@@ -7,14 +7,14 @@ Likelihood:{
 }
 
 Variables:{
-	adjective = Choose(terrible,horrible,bad,ridiculous,really stupid fucking)
+	adjective = Choose(terrible,horrible,bad,ridiculous,really fucking stupid,dumb)
 }
 
 Flavor Text:{
 	${name} went to the local salon and got a ${adjective} haircut.  
 }
 
-Outcome:{
+Outcome 1:{
 	
 	Flavor Text:{
 		But ${subject-pronoun} totally rocked it anyway!
@@ -29,12 +29,12 @@ Outcome:{
 	}
 }
 
-Outcome:{
+Outcome 2:{
 	
 	Flavor Text:{
 		And ${subject-pronoun} was the laughingstock of the whole town for a couple of months.
 		And it was super fucking embarrassing.
-		And ${name} wouldn't even leave ${possessive-pronoun} room for an enire month.
+		And ${name} wouldn't even leave ${possessive-pronoun} room for an entire month.
 	}
 	Depends On:{ 
 		-Personality.Charismatic

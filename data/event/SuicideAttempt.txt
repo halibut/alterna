@@ -7,7 +7,7 @@ Likelihood:{
 }
 
 Variables:{
-	methodOfDeath = Choose(jumping off a cliff,eating a whole thing of magic beans,auto-asphyxiation,just hating ${reflexive-pronoun} to death, camoflauging ${reflexive-pronoun} to look like the street and waiting for a cart to run ${object-pronoun} over, eating ${reflexive-pronoun} alive)
+	methodOfDeath = Choose(jumping off a cliff,eating a whole thing of magic beans,autoerotic-asphyxiation,just hating ${reflexive-pronoun} to death, camoflauging ${reflexive-pronoun} to look like the street and waiting for a cart to run ${object-pronoun} over, eating ${reflexive-pronoun} alive)
 	adjective = Choose(cuddly,sweet,warm,loving,cold,welcoming)
 }
 
@@ -17,10 +17,10 @@ Flavor Text:{
 	${name} didn't think things could get any worse. ${subject-pronoun} saw that ${possessive-pronoun} only way out was through the sweet release of death... 
 }
 
-Outcome:{
+Outcome 1:{
 	
 	Flavor Text:{
-		But ${subject-pronoun} decided not to go through with it, thanks to the support of  ${possessive-pronoun} caring friends.
+		But ${subject-pronoun} decided not to go through with it, thanks to the support of ${possessive-pronoun} caring friends.
 	}
 	Depends On:{ 
 		+Personality.Friendly
@@ -31,7 +31,7 @@ Outcome:{
 	}
 }
 
-Outcome:{
+Outcome 2:{
 	
 	Flavor Text:{
 		But ${subject-pronoun} wussed out and lived on.
@@ -46,7 +46,7 @@ Outcome:{
 	}
 }
 
-Outcome:{
+Outcome 3:{
 	
 	Flavor Text:{
 		And so ${subject-pronoun} went through with it by ${methodOfDeath}.

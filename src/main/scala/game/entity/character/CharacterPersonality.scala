@@ -25,5 +25,5 @@ class CharacterPersonality {
 
 object CharacterPersonality {
   val MaxVal = 255
-  val MinVal = 255
+  val MinVal = -255
 }
