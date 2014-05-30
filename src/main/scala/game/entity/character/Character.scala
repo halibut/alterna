@@ -1,5 +1,6 @@
 package game.entity.character
 
+import scala.language.{postfixOps}
 import game.entity.character.CharacterSex._
 import game.entity.event.LifeEvent
 import game.entity.Location

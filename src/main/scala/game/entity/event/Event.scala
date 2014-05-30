@@ -4,6 +4,8 @@ import game.random.Bag
 import game.entity.event.likelihood.Likelihood
 import game.entity.event.outcome.Outcome
 import game.entity.event.likelihood.YearlyChance
+import game.entity.character.Stat
+import game.entity.event.likelihood.StatBasedLikelihood
 
 trait Event {
   implicit val event:Event = this
@@ -41,6 +43,16 @@ trait Event {
   
   def YearlyChance(chances:Int,outOf:Int):YearlyChance = new YearlyChance(chances, outOf);
   def Choose(options:String*):ChoiceVariable = new ChoiceVariable(options);
+  
+  def +(stat:Stat):Likelihood = {
+    new StatBasedLikelihood(stat, StatWeight.SlightPositive)
+  }
+  def ++(stat:Stat):Likelihood = {
+    new StatBasedLikelihood(stat, StatWeight.ModeratePositive)
+  }
+  def +++(stat:Stat):Likelihood = {
+    new StatBasedLikelihood(stat, StatWeight.HeavyPositive)
+  }
 }
 
 object Event{

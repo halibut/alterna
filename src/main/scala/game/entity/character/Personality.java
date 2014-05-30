@@ -1,6 +1,6 @@
 package game.entity.character;
 
-public enum PersonalityDimension {
+public enum Personality {
 	
 	Charismatic,
 	Pacifist, 
@@ -14,7 +14,7 @@ public enum PersonalityDimension {
 	Satisfied
 	;
 	
-	private PersonalityDimension(){
+	private Personality(){
 		
 	}
 

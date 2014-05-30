@@ -9,10 +9,18 @@ abstract class Outcome(implicit val event:Event) {
   
   private var likelihood: Seq[Likelihood] = Seq();
   private var flavorText: Bag[String] = Bag();
+  private var results: Seq[Result] = Seq()
   
   def FlavorText(flavorText: String*): Unit = {
     this.flavorText = new Bag[String](flavorText.map((_, 1)))
   }
   
+  def DependsOn(likelihoods:Likelihood*):Unit ={
+    this.likelihood ++= likelihoods
+  }
+  
+  def Result(results:Result*):Unit = {
+    this.results ++= results
+  }
 }
 

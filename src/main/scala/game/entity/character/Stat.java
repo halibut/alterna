@@ -1,6 +1,6 @@
 package game.entity.character;
 
-public enum StatType {
+public enum Stat {
 
 	MaxHP(1, 9999),
 	MaxAP(1, 999),
@@ -17,7 +17,7 @@ public enum StatType {
 	private int min;
 	private int max;
 
-	private StatType(int min, int max){
+	private Stat(int min, int max){
 		this.min = min;
 		this.max = max;
 	}

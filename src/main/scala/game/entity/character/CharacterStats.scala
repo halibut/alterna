@@ -2,13 +2,13 @@ package game.entity.character
 
 class CharacterStats {
 
-  private var stats = StatType.values.map(dim => (dim,0)).toMap
+  private var stats = Stat.values.map(stat => (stat,0)).toMap
   
-  def apply(stat:StatType):Int = {
+  def apply(stat:Stat):Int = {
     stats(stat)
   }
   
-  def update(stat:StatType,value:Int) = {
+  def update(stat:Stat,value:Int) = {
     import CharacterStats._
     stats = stats.updated(stat, math.min(MaxVal,math.max(MinVal,value)))
   }

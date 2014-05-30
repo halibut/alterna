@@ -1,7 +1,12 @@
 package game.content.events
 
 import game.entity.event._
-import game.entity.event.outcome.Outcome
+import game.entity.event.outcome._
+import game.entity.character.Stat
+import game.entity.event.likelihood.StatBasedLikelihood._
+import game.entity.character.Personality
+import scala.language.{implicitConversions,postfixOps}
+import game.entity.event.likelihood.StatBasedLikelihood
 
 object AnimalAttack extends CharacterEvent {
   Name = "Animal Attack"
@@ -26,8 +31,15 @@ object AnimalAttack extends CharacterEvent {
 		"But ${subject-pronoun} escaped with ${possessive-pronoun} life!"
 	)
 	
+	DependsOn(
+	    Stat.Strength++,
+	    Stat.Defense+,
+	    Stat.Evasion+,
+	    Personality.Brave+,
+	    Personality.Pacifist-
+	)
+	
 //	DependsOn:{ 
-//		++Stat.Strenght
 //		++Stat.Strength
 //		+Stat.Defense
 //		+Stat.Evasion
@@ -35,6 +47,17 @@ object AnimalAttack extends CharacterEvent {
 //		+Personality.Brave
 //		-Personality.Pacifist
 //	}
+	
+	
+	
+	Result(
+	    Stat.Strength++,
+	    Stat.Evasion+,
+	    Stat.Luck+,
+	    Personality.Brave+,
+	    Personality.Pacifist-
+	)
+	
 //	Result:{
 //		++Stat.Strength
 //		+Stat.Evasion

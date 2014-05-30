@@ -1,12 +1,14 @@
 package game.entity.event.likelihood
 
 import game.entity.character.Character
-import game.entity.character.PersonalityDimension
+import game.entity.character.Personality
 import game.entity.event.StatWeight
 import game.entity.character.CharacterPersonality
 
 
-class PersonalityBasedLikelihood(val pDim: PersonalityDimension, weight: StatWeight) extends Likelihood {
+class PersonalityBasedLikelihood(personalityAndWeight:(Personality,StatWeight)) extends Likelihood {
+  val (pDim,weight) = personalityAndWeight
+  
   def chance(character: Character): Double = {
     import CharacterPersonality._
     val personality = character.personality

@@ -29,7 +29,7 @@ object StringUtils {
     newStr
   }
   
-  implicit class ReplaceVarsImplicit(val str:String){
+  implicit class ReplaceVarsImplicit(val str:String) extends AnyVal{
     def replaceVars(vars:Map[String,String]) = {
       StringUtils.replaceVars(str, vars)
     }

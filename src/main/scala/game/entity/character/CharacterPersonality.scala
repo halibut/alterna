@@ -4,20 +4,20 @@ import game.random.Random
 
 class CharacterPersonality {
 
-  private var dimensions = PersonalityDimension.values.map(dim => (dim,0)).toMap
+  private var dimensions = Personality.values.map(dim => (dim,0)).toMap
   
-  def apply(dim:PersonalityDimension):Int = {
+  def apply(dim:Personality):Int = {
     dimensions(dim)
   }
   
-  def update(dim:PersonalityDimension,value:Int) = {
+  def update(dim:Personality,value:Int) = {
     import CharacterPersonality._
     dimensions = dimensions.updated(dim, math.min(MaxVal,math.max(MinVal,value)))
   }
   
   def randomize:Unit = {
     import CharacterPersonality._
-    dimensions = PersonalityDimension.values.map(dim => 
+    dimensions = Personality.values.map(dim =>  
       (dim,Random.rand.randInt(MaxVal - MinVal) - MinVal)
     ).toMap
   }
