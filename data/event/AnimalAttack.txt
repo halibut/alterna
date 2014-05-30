@@ -1,16 +1,17 @@
-Event: Animal Attack
+Event = "Animal Attack"
 Type: Character
 
 Likelihood:{
  	YearlyChance(1/20)
 }
 
+var animal = Choose("a bear",)
 Variables:{
 	animal = Choose(a bear,a cat,a giraffe,an ocelot,a swarm of bees,a wolf,a moose)
 }
 
 Flavor Text:{
-	${name} was attacked by ${animal}!
+	s"${name} was attacked by ${animal}!"
 	While ${name} was sleeping, ${animal} smashed through the window and tried to eat ${object-pronoun}!  
 }
 
@@ -21,6 +22,7 @@ Outcome 1:{
 		But ${subject-pronoun} escaped with ${possessive-pronoun} life!
 	}
 	Depends On:{ 
+		++Stat.Strenght
 		++Stat.Strength
 		+Stat.Defense
 		+Stat.Evasion

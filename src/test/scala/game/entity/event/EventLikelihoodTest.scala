@@ -2,6 +2,11 @@ package game.entity.event
 
 import org.junit.Test
 import org.junit.Assert._
+import game.entity.event.likelihood.YearlyChanceLikelihood
+import game.entity.event.likelihood.StatbasedLikelihood
+import game.entity.event.likelihood.PersonalitybasedLikelihood
+import game.entity.event.likelihood.MultipleLikelihood
+import game.entity.event.likelihood.EventLikelihood
 
 class EventLikelihoodTest {
   
