@@ -14,20 +14,35 @@
 		<encoding>UTF-8</encoding>
 		<scala.version>2.11.1</scala.version>
 	</properties>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>org.scala-lang</groupId>
 			<artifactId>scala-library</artifactId>
 			<version>${scala.version}</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-reflect</artifactId>
+			<version>${scala.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.typesafe.scala-logging</groupId>
+			<artifactId>scala-logging-slf4j_2.11</artifactId>
+			<version>2.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
 			<version>2.3</version>
 		</dependency>
-		
+
 		<!-- Local dependencies that aren't in a Maven Repo (in lib directory) -->
 		<dependency>
 			<groupId>net.davidashen</groupId>
@@ -82,4 +97,5 @@
 			</plugin>
 		</plugins>
 	</build>
+
 </project>
