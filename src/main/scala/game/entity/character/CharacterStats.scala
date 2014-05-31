@@ -9,8 +9,7 @@ class CharacterStats {
   }
   
   def update(stat:Stat,value:Int) = {
-    import CharacterStats._
-    stats = stats.updated(stat, math.min(MaxVal,math.max(MinVal,value)))
+    stats = stats.updated(stat, math.min(stat.getMax(),math.max(stat.getMin(),value)))
   }
   
   def avgLevel:Int = {
@@ -18,9 +17,14 @@ class CharacterStats {
     (sum / stats.size.toDouble).toInt
   }
   
-}
-
-object CharacterStats{
-  val MaxVal = 255
-  val MinVal = 0
+  
+  override def toString():String = {
+    stats.toSeq
+    	.sortWith{case (s1,s2) => s1._2 > s2._2}
+    	.map{case (stat,value) =>
+    	  stat.name()+": "+value
+    	}
+    	.mkString("\n") +
+        "\nAvg: "+avgLevel
+  }
 }

@@ -4,26 +4,29 @@ import game.random.Random
 
 class CharacterPersonality {
 
-  private var dimensions = Personality.values.map(dim => (dim,0)).toMap
-  
-  def apply(dim:Personality):Int = {
+  private var dimensions = Personality.values.map(dim => (dim, 0)).toMap
+
+  def apply(dim: Personality): Int = {
     dimensions(dim)
   }
-  
-  def update(dim:Personality,value:Int) = {
-    import CharacterPersonality._
-    dimensions = dimensions.updated(dim, math.min(MaxVal,math.max(MinVal,value)))
+
+  def update(dim: Personality, value: Int) = {
+    dimensions = dimensions.updated(dim, math.min(dim.getMax(), math.max(dim.getMin(), value)))
   }
-  
-  def randomize:Unit = {
-    import CharacterPersonality._
-    dimensions = Personality.values.map(dim =>  
-      (dim,Random.rand.randInt(MaxVal - MinVal) - MinVal)
+
+  def randomize: Unit = {
+    dimensions = Personality.values.map(dim =>
+      (dim, Random.rand.randInt(dim.getMin(), dim.getMax()))
     ).toMap
   }
-}
 
-object CharacterPersonality {
-  val MaxVal = 255
-  val MinVal = -255
+  override def toString(): String = {
+    dimensions.toSeq
+      .sortWith { case (d1, d2) => d1._2 > d2._2 }
+      .map {
+        case (dim, value) =>
+          dim.name() + ": " + value
+      }
+      .mkString("\n")
+  }
 }

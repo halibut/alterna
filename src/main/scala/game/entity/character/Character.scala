@@ -23,6 +23,7 @@ class Character {
   val relationships = new CharacterRelationships()
   val stats = new CharacterStats()
   val personality = new CharacterPersonality()
+  var level:Int = 1
 
   var location: Option[Location] = None;
   var world: Option[World] = None

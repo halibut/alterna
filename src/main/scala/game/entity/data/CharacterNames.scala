@@ -1,6 +1,7 @@
 package game.entity.data
 
 import game.random.Bag
+import game.random.Bag._
 import game.tools.FileUtils
 
 object CharacterNames {
@@ -15,6 +16,6 @@ object CharacterNames {
     pairs.toSeq
   }
 
-  val nameBag = new Bag[(String, String)](names.map(nm => (nm, 1)))
+  val nameBag = Bag.fromItems(names:_*)
   
 }

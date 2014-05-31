@@ -18,4 +18,14 @@ public enum Personality {
 		
 	}
 
+	public int getMin(){
+		return -255;
+	}
+	public int getMax(){
+		return 255;
+	}
+	
+	public int getRange(){
+		return getMax() - getMin();
+	}
 }

@@ -28,4 +28,5 @@ public enum Stat {
 	public int getMax() {
 		return max;
 	}
+	
 }

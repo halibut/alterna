@@ -2,6 +2,6 @@ package game.entity.decision
 
 trait DecisionEngine {
   
-  def decide[C <: Choice](char:Character, choices:Seq[C]):C
+  def decide[C <: Choice](char:Character, choices:Seq[C]):Option[C]
 
 }

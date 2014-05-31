@@ -3,6 +3,7 @@ package game.tools
 import scala.collection.mutable.Map
 import scala.collection.mutable.ArrayBuffer
 import game.random.Bag
+import game.random.Bag._
 import scala.io.Source
 
 object CharacterFreqAnalyzer {
@@ -104,7 +105,7 @@ object CharacterFreqAnalyzer {
 
     val twoCharSeqBagsSeq: Seq[(String, Bag[String])] = charMap.map { mp =>
       val bgValues = mp._2.toSeq
-      (mp._1, new Bag[String](bgValues))
+      (mp._1, Bag.fromProbs(bgValues:_*))
     }.toSeq
 
     val twoCharSeqBags = twoCharSeqBagsSeq.toMap
@@ -114,7 +115,7 @@ object CharacterFreqAnalyzer {
       var continue = true;
       while (name.length() < 50 && continue) {
         val lastNChars: String = name.takeRight(analyzeChars)
-        val nextChar = twoCharSeqBags(lastNChars).get
+        val nextChar = twoCharSeqBags(lastNChars).get.get
         if (nextChar == "") {
           continue = false;
         } else {

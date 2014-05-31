@@ -5,18 +5,19 @@ import game.entity.character.CharacterSex
 import game.entity.character.CharacterSex._
 import game.entity.data.CharacterNames
 import game.random.Bag
+import game.random.Bag._
 import game.random.Random
 
 object CharacterCreator {
   
-  val sexBag = Bag[CharacterSex](Male,Female)
+  val sexBag = Bag.fromItems(Male,Female)
   
   
   def initCharacter:Character = {
     val character = new Character()
    
-    character.name = CharacterNames.nameBag.get
-    character.sex = sexBag.get
+    character.name = CharacterNames.nameBag.get.get
+    character.sex = sexBag.get.get
     character.gender = Random.bagRand.randDouble(0.65).toFloat
     if(character.sex == Female){
       character.gender += 0.35f

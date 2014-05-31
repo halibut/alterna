@@ -10,10 +10,9 @@ class PersonalityBasedLikelihood(personalityAndWeight:(Personality,StatWeight)) 
   val (pDim,weight) = personalityAndWeight
   
   def chance(character: Character): Double = {
-    import CharacterPersonality._
     val personality = character.personality
     val dimAmount = personality(pDim).toDouble * weight.getMultiplier()
-    val amount = if (dimAmount < 0) -dimAmount / MinVal else dimAmount / MaxVal
+    val amount = if (dimAmount < 0) -dimAmount / pDim.getMin() else dimAmount / pDim.getMax()
     math.min(1.0, math.max(0.0, amount))
   }
 }

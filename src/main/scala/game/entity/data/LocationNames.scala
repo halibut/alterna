@@ -25,7 +25,7 @@ object LocationNames {
       	.filterNot(_.isEmpty())
       	.toSeq
       	
-      new Bag[String](seq.map((_,1)))
+      Bag.fromItems(seq:_*)
     }
 
     lazy val nameBag:Bag[String] = loadBag("data/locations.txt")
@@ -36,15 +36,15 @@ object LocationNames {
     
     
     def getName(baseName:String = "", prefixSuffixOdds:Int = 3, prefixSuffixOutOf:Int = 4):LocationName = {
-      val bName = if(baseName == "") nameBag.get else baseName
+      val bName = if(baseName == "") nameBag.get.get else baseName
       
       var p:Option[String] = None
       if(Random.rand.hitOdds(prefixSuffixOdds, prefixSuffixOutOf)){
-        p = Some(prefixBag.get)
+        p = prefixBag.get
       }
       var s:Option[String] = None
       if(Random.rand.hitOdds(prefixSuffixOdds, prefixSuffixOutOf)){
-        s = Some(suffixBag.get)
+        s = suffixBag.get
       }
       
       new LocationName(bName, p, s)
