@@ -40,7 +40,7 @@ class WorldBuilder {
   lazy val lastNameGen = new WordGenerator("data/last-names-3char-freqs.txt", 3)
   
   EventPlugins.registerSimilarPlugins(AnimalAttack);
-  EventPlugins.registerPlugin(AnimalAttack)
+  //EventPlugins.registerPlugin(AnimalAttack)
 
   def generateWorld: World = {
     val world = new World();

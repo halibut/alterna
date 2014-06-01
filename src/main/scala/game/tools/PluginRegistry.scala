@@ -25,19 +25,21 @@ abstract class PluginRegistry[T : ClassTag] {
     
     val runtimeMirror = universe.runtimeMirror(getClass.getClassLoader)
     
-    for{file <- allFiles
-        val modName = file.getName().replaceAll("\\.class", "")
-        val clsName = pkg + "." + modName
-        if(clsName.indexOf("$") < 0)
-    }{
+    val filteredFiles = allFiles.map{file =>
+      pkg + "." + file.getName().replaceAll("\\.class", "")
+    }.filter{name =>
+      name.indexOf('$') < 0
+    }
+    
+    for{file <- filteredFiles}{
       try{
-	      val module = runtimeMirror.staticModule(clsName)
-	      val obj = runtimeMirror.reflectModule(module)
+	      val module = runtimeMirror.staticModule(file)
+	      val obj = runtimeMirror.reflectModule(module).instance
 	      if(cls.isAssignableFrom(obj.getClass())){
-	        registerPlugin(cls.asInstanceOf[T])
+	        registerPlugin(obj.asInstanceOf[T])
 	      }
       }catch{
-        case e:Exception => println("Error loading plugin "+clsName+". -"+e.getClass()+"-"+e.getMessage())
+        case e:Exception => println("Error loading plugin "+file+". -"+e.getClass()+"-"+e.getMessage())
       }
     }
   }
