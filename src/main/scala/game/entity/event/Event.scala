@@ -12,12 +12,12 @@ import game.tools.StringUtils._
 trait Event {
   implicit val event:Event = this
   
-  private var eventName: String = ""
+  protected var eventName: String = ""
 
-  private var triggeredBy: Seq[EventTrigger] = Seq();
-  private var variables: Seq[(String, EventVariable)] = Seq();
-  private var flavorText: Bag[String] = Bag();
-  private var outcomes: Seq[Outcome] = Seq();
+  protected var triggeredBy: Seq[EventTrigger] = Seq();
+  protected var variables: Seq[(String, EventVariable)] = Seq();
+  protected var flavorText: Bag[String] = Bag();
+  protected var outcomes: Seq[Outcome] = Seq();
 
   def TriggeredBy(likelihoods: EventTrigger*): Unit = {
     this.triggeredBy ++= likelihoods
@@ -51,26 +51,7 @@ trait Event {
     !triggers.isEmpty
   }
   
-  def resolve(character:Character):LifeEvent = {
-    val vars = EventVariables.getEventVars(variables, character) 
-    
-    val triggerFlavorText = flavorText.get.get.replaceVars(vars,"<",">").capitalize
-    
-    val attunements = outcomes.map{outcome =>
-      outcome -> outcome.calcAttunement(character)
-    }
-    
-    val outcome = Bag(attunements:_*).get.get
-    val outcomeFlavorText = outcome.flavorText.get.get.replaceVars(vars,"<",">").capitalize
-    outcome.resolve(character)
   
-    LifeEvent(LifeEventType.PhysicalTrial,
-        character.world.get.year,
-        character,
-        triggerFlavorText + " " + outcomeFlavorText
-        )
-    
-  }
 }
 
 object Event{

@@ -5,11 +5,12 @@ import game.entity.event.StatWeight
 import game.entity.character.Character
 import game.random.Random
 import game.entity.character.Personality
+import org.joda.time.DateTime
 
 class PersonalityChangeResult(personalityAndWeight:(Personality,StatWeight)) extends Result{
   val (personality, weight) = personalityAndWeight
 
-  def updateCharacter(character:Character):Unit = {
+  def updateCharacter(character:Character, date:DateTime):Unit = {
     val change = weight match{
       case StatWeight.SlightPositive => Random.rand.randInt(1, 3)
       case StatWeight.ModeratePositive => Random.rand.randInt(3, 6)

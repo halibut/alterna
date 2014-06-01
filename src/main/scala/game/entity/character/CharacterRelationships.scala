@@ -15,6 +15,11 @@ class CharacterRelationships {
   def apply(char:Character):Seq[Relationship] = {
     relationships(char)
   }
+  def apply(tp:RelationshipType):Seq[Relationship] = {
+    relationships.toSeq.map(_._2).flatten.filter(_.relationshipType == tp)
+  }
+  
+  def all:Map[Character,Seq[Relationship]] = relationships 
   
   def apply(char:Character, tp:RelationshipType):Option[Relationship] = {
     relationships(char).find(_.relationshipType == tp)
@@ -30,6 +35,10 @@ class CharacterRelationships {
     else{
       relationships = relationships.updated(rel.to, curRelationships)
     }
+  }
+  
+  def removeAll:Unit = {
+    relationships = Map()
   }
   
   override def toString():String = {

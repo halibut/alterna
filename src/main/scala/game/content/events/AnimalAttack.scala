@@ -77,7 +77,7 @@ object AnimalAttack extends CharacterEvent {
 		Personality.Pacifist+++
 	)
 	Result(
-		//Event.Death
+		UnnaturalDeath
 	)
   }
 	

@@ -1,23 +1,17 @@
 package game.entity
 
-import game.entity.event.likelihood.StatBasedLikelihood
-import game.entity.event.StatWeight
-import game.entity.character.Stat
-import game.entity.event.outcome.StatChangeResult
-import game.entity.character.Personality
-import game.entity.event.likelihood.PersonalityBasedLikelihood
-import game.entity.event.outcome.PersonalityChangeResult
-import game.entity.event.outcome.StatChangeResult
-import game.entity.event.outcome.StatChangeResult
 import scala.language.{implicitConversions}
-import game.entity.event.trigger.ChanceTrigger
-import game.entity.event.trigger.StatBasedTrigger
-import game.entity.event.trigger.StatBasedTrigger
-import game.entity.event.trigger.PersonalityBasedTrigger
-import game.entity.event.trigger.ChanceTrigger
-import game.entity.event.trigger.ChanceTrigger
+import game.entity.character.Stat
+import game.entity.character.Personality
+import game.entity.event.StatWeight
+import game.entity.event.likelihood._
+import game.entity.event.outcome._
+import game.entity.event.trigger._
+import game.entity.character.RelationshipType
 
 package object event {
+  
+  def AnotherEvent:EventTrigger = NeverTrigger;
   
   def Chance(chances:Int,outOf:Int):Double = chances.toDouble / outOf.toDouble;
   
@@ -25,7 +19,6 @@ package object event {
   
   def YearlyChance(prob:Double):ChanceTrigger = new ChanceTrigger(prob);
   def YearlyChance(chances:Int, outOf:Int):ChanceTrigger = YearlyChance(Chance(chances,outOf));
-  
   
   implicit def statAndWeightToLikelihood(statAndWeight: (Stat, StatWeight)): StatBasedLikelihood = {
     new StatBasedLikelihood(statAndWeight)
@@ -74,5 +67,16 @@ package object event {
     def --(chance:Double) = new PersonalityBasedTrigger((personality, StatWeight.ModerateNegative),chance)
     def ---(chance:Double) = new PersonalityBasedTrigger((personality, StatWeight.HeavyNegative),chance)
   }
+
+  
+  implicit def eventAndRelationsToOutcome(eventAndRelations:(RelationshipEvent,Affects)):Result = {
+    new TriggerRelationshipEventResult(eventAndRelations)
+  }
+  
+  implicit def eventAndRelationsToOutcome(event:CharacterEvent):Result = {
+    new TriggerCharacterEventResult(event)
+  }
+  
+  def AllRelations:Affects = new CharacterRelations(RelationshipType.values:_*)
 
 }

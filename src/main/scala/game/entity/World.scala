@@ -25,4 +25,8 @@ class World {
       characters = characters.filterNot(_ == character) :+ character
       character.world = Some(this)
     }
+    
+    def livingCharacters:Seq[Character] = {
+      characters.filterNot(_.isDeceased)
+    }
 }

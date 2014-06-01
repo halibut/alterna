@@ -7,6 +7,7 @@ import game.random.Bag
 import game.tools.WordGenerator
 import game.entity.data.CharacterNames
 import game.entity.character.Family
+import game.entity.character.Character
 import game.random.Random
 import game.entity.event.LifeEvent
 import game.entity.event.LifeEventType
@@ -16,6 +17,9 @@ import game.entity.character.RelationshipType
 import game.entity.character.CharacterEventHelper
 import game.entity.event.EventPlugins
 import game.content.events.AnimalAttack
+import game.entity.character.CharacterQuality
+import game.entity.data.CharacterLevelRates
+import game.entity.event.CharacterEvent
 
 class WorldBuilder {
 
@@ -36,9 +40,9 @@ class WorldBuilder {
     10 -> 3,
     15 -> 2,
     20 -> 1)
-
-  lazy val lastNameGen = new WordGenerator("data/last-names-3char-freqs.txt", 3)
   
+  lazy val lastNameGen = new WordGenerator("data/last-names-3char-freqs.txt", 3)
+
   EventPlugins.registerSimilarPlugins(AnimalAttack);
   //EventPlugins.registerPlugin(AnimalAttack)
 
@@ -113,14 +117,23 @@ class WorldBuilder {
     }
 
     for (year <- 0 until 50) {
-      for (
-        char <- world.characters;
-        event <- EventPlugins.registeredPlugins
-      ) {
-
-        if (event.isTriggered(char)) {
-          val lifeEvent = event.resolve(char)
-          char.lifeEvents.add(lifeEvent)
+      for (char <- world.livingCharacters) {
+        
+        for(lvls <- 0 until CharacterLevelRates.rates(char.age)){
+        	char.levelUp
+        }
+        
+        for (event <- EventPlugins.registeredPlugins) {
+          if(event.isTriggered(char)){
+	          event match {
+	            case e:CharacterEvent => {
+	              val lifeEvent = e.resolve(char)
+	              char.lifeEvents.add(lifeEvent)
+	            }
+	            case _ =>
+	          }
+          }
+          
         }
 
       }

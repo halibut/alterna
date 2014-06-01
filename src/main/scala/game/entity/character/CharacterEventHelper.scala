@@ -4,6 +4,7 @@ import org.joda.time.DateTime
 import game.entity.event.LifeEvent
 import game.entity.event.LifeEventType._
 import game.entity.character.RelationshipType._
+import game.entity.data.CharacterLevelRates
 import game.random.Random
 
 object CharacterEventHelper {
@@ -18,6 +19,13 @@ object CharacterEventHelper {
   }
   
   def birth(family:Option[Family], child:Character) = {
+    if(child.age >= 0){
+	    for(age <- 0 until child.age;
+	    	lvls <- 0 until CharacterLevelRates.rates(age)){
+	      child.levelUp
+	    }
+    }
+    
     val birthEvent = LifeEvent(Birth, child.birthDate.get, child, "Baby "+child.firstName+" was born!");
     child.lifeEvents.add(birthEvent)
     

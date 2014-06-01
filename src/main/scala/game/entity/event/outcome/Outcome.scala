@@ -4,6 +4,7 @@ import game.entity.event.likelihood.Likelihood
 import game.entity.event.Event
 import game.random.Bag
 import game.entity.character.Character
+import org.joda.time.DateTime
 
 abstract class Outcome(implicit val event:Event) {
   event.addOutcome(this)
@@ -30,9 +31,9 @@ abstract class Outcome(implicit val event:Event) {
     }.sum / likelihood.size
   }
   
-  def resolve(char:Character):Unit = {
+  def resolve(char:Character, date:DateTime):Unit = {
     results.foreach{ result =>
-      result.updateCharacter(char)
+      result.updateCharacter(char, date)
     }
   }
 }

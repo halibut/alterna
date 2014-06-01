@@ -2,16 +2,16 @@ package game.entity.character;
 
 public enum Stat {
 
-	MaxHP(1, 9999),
-	MaxAP(1, 999),
-	Strength(1, 255),
-	Defense(1, 255),
-	Focus(1, 255),
-	Spirit(1, 255),
-	Accuracy(1, 255),
-	Evasion(1, 255),
-	Speed(1, 255),
-	Luck(1, 255)
+	MaxHP(1, 99999),
+	MaxAP(1, 9999),
+	Strength(1, 999),
+	Defense(1, 999),
+	Focus(1, 999),
+	Spirit(1, 999),
+	Accuracy(1, 999),
+	Evasion(1, 999),
+	Speed(1, 999),
+	Luck(1, 999)
 	;
 
 	private int min;
