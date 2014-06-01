@@ -23,14 +23,14 @@ object Mugged extends CharacterEvent {
   )
   
   FlavorText (
-    "<name> got mugged by some <adjective> <adjective> thief wielding a <weapon>!",
+    "<name> got mugged by some <adjective> thief wielding a <weapon>!",
 	"While <name> was out <activity>, <subject-pronoun> was mugged by a <adjective> thief!"  
   )
   
   new Outcome {
     FlavorText(
 		"So <name> murdered his ass.",
-		"So <name> taught that <insultingName> an important lesson in dying. And <name> didn't teach by example."
+		"So <name> taught that <insultingName> an important lesson in dying."
 	)
 	DependsOn(
 	    Stat.Strength++,

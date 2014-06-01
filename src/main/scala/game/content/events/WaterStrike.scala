@@ -7,24 +7,27 @@ import game.entity.character.Personality
 import scala.language.{implicitConversions,postfixOps}
 
 
-object LightningStrike extends CharacterEvent {
-  Name = "Lightning Strike"
+object WaterStrike extends CharacterEvent {
+  Name = "Water Strike"
 
   TriggeredBy (
     YearlyChance(1,200)
   )
   
     Variables (
+        "bodyPart" -> Choose("feet","face","hands","elbows","fingers","hair"),
+        "activity" -> Choose("fishing","soaking <possessive-pronoun> <bodyPart>","having sex"),
+        "bodyOfWater" -> Choose("lake","stream","river","pond","lagoon","swamp","puddle"),
+        "modifier" -> Choose("extremely","incredibly","unbelievably")
   )
   
   FlavorText (
-    "<name> was struck by lightning!",
-	"While <name> was playing with <possessive-pronoun> set of giant metal rods one stormy day, <subject-pronoun> was struck by lightning!"  
+    "Suddenly, while <name> was <activity> in the nearby <bodyOfWater>, a tidal wave threatened to drown <object-pronoun>!"
   )
   
   new Outcome {
     FlavorText(
-		"But <subject-pronoun> survived and actually felt strangely invigorated..."
+		"But <name> was feeling <modifier> thirsty anyway, so <subject-pronoun> just drank it away!"
 	)
 	DependsOn(
 	    Stat.Spirit++,
@@ -33,13 +36,13 @@ object LightningStrike extends CharacterEvent {
 	Result(
 	    Stat.Spirit++,
 	    Personality.Brave+
-	    //Talent.ShockEater(1/1)
+	    //Talent.WaterEater(1/1)
 	)
   }
 
   new Outcome {
     FlavorText(
-        "But <subject-pronoun> survived it, no sweat!"
+        "But <name> just let it wash over <object-pronoun> and went back to <activity>."
     )
     DependsOn(
         Stat.Spirit++,
@@ -48,13 +51,13 @@ object LightningStrike extends CharacterEvent {
     Result(
         Stat.Spirit++,
         Personality.Brave+
-        //Talent.Shockproof(1/1)
+        //Talent.Waterproof(1/1)
     )
 }
 
 new Outcome {
   FlavorText(
-      "<subject-pronoun> survived, but just barely."
+      "<subject-pronoun> survived, but was plagued with dreams of drowning for several weeks."
       )
   DependsOn(
       Stat.Spirit+
@@ -62,15 +65,14 @@ new Outcome {
   Result(
       Personality.Satisfied---,
       Personality.Brave--
-      //Flaw.Astraphobe(1,4)
+      //Flaw.Aquaphobe(1,4)
  )
 }
 	
 new Outcome {
   FlavorText(
-      "Or so it would seem. Thankfully, <name> managed to dodge it just in time!",
-      "At least, <subject-pronoun> almost was. Luckily, <name> managed to scurry out of the way just in the nick of time!"
-      )
+      "But <subject-pronoun> swiftly got out of the way!"
+       )
   DependsOn(
       Stat.Evasion++,
       Stat.Speed+
@@ -85,8 +87,7 @@ new Outcome {
   new Outcome{
     FlavorText(
 		"And <subject-pronoun> was killed instantly.",
-		"And <subject-pronoun> just didn't stand a chance.",
-		"And <subject-pronoun> was toast."
+		"And <name>'s last thought was that <subject-pronoun> sure wished <subject-pronoun> had taken swimming lessons."
 	)
 	DependsOn(
 		Stat.Evasion--,

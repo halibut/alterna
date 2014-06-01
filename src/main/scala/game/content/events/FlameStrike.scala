@@ -65,7 +65,7 @@ new Outcome{
 	    Stat.Spirit+,
 	    Personality.Satisfied--,
 	    Personality.Brave--
-	    //Flaw.Flamephobe(1,4)
+	    //Flaw.Arsonphobe(1,4)
 	)
   }
 

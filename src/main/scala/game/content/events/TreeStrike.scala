@@ -7,24 +7,25 @@ import game.entity.character.Personality
 import scala.language.{implicitConversions,postfixOps}
 
 
-object LightningStrike extends CharacterEvent {
-  Name = "Lightning Strike"
+object TreeStrike extends CharacterEvent {
+  Name = "Tree Strike"
 
   TriggeredBy (
     YearlyChance(1,200)
   )
   
     Variables (
+        "adjective" -> Choose("a rogue","an antagonistic","a goddamn","a freakin'","a devious", "a dastardly")
   )
   
   FlavorText (
-    "<name> was struck by lightning!",
-	"While <name> was playing with <possessive-pronoun> set of giant metal rods one stormy day, <subject-pronoun> was struck by lightning!"  
+    "One day, as <name> strolled through the forest, a <adjective> tree decided to flail its branches at <object-pronoun>!",
+	"While <name> was in the woods, a tree suddenly rose out of the ground right beneath <object-pronoun>!"  
   )
   
   new Outcome {
     FlavorText(
-		"But <subject-pronoun> survived and actually felt strangely invigorated..."
+		"But <subject-pronoun> survived and discovered that <subject-pronoun> REALLY had a thing for trees..."
 	)
 	DependsOn(
 	    Stat.Spirit++,
@@ -33,13 +34,13 @@ object LightningStrike extends CharacterEvent {
 	Result(
 	    Stat.Spirit++,
 	    Personality.Brave+
-	    //Talent.ShockEater(1/1)
+	    //Talent.TreeEater(1/1)
 	)
   }
 
   new Outcome {
     FlavorText(
-        "But <subject-pronoun> survived it, no sweat!"
+        "But <subject-pronoun> survived it! In fact, no tree could lay a branch on <object-pronoun>!"
     )
     DependsOn(
         Stat.Spirit++,
@@ -48,13 +49,13 @@ object LightningStrike extends CharacterEvent {
     Result(
         Stat.Spirit++,
         Personality.Brave+
-        //Talent.Shockproof(1/1)
+        //Talent.Treeproof(1/1)
     )
 }
 
 new Outcome {
   FlavorText(
-      "<subject-pronoun> survived, but just barely."
+      "<subject-pronoun> survived, but not without a painful branch-whippin'."
       )
   DependsOn(
       Stat.Spirit+
@@ -62,14 +63,14 @@ new Outcome {
   Result(
       Personality.Satisfied---,
       Personality.Brave--
-      //Flaw.Astraphobe(1,4)
+      //Flaw.Dendrophobe(1,4)
  )
 }
 	
 new Outcome {
   FlavorText(
-      "Or so it would seem. Thankfully, <name> managed to dodge it just in time!",
-      "At least, <subject-pronoun> almost was. Luckily, <name> managed to scurry out of the way just in the nick of time!"
+      "Good thing <name> managed to dodge it!",
+      "Reacting quickly, <subject-pronoun> leapt out of the way!"
       )
   DependsOn(
       Stat.Evasion++,
@@ -85,8 +86,8 @@ new Outcome {
   new Outcome{
     FlavorText(
 		"And <subject-pronoun> was killed instantly.",
-		"And <subject-pronoun> just didn't stand a chance.",
-		"And <subject-pronoun> was toast."
+		"And <subject-pronoun> was branch whipped to death.",
+		"It filled <object-pronoun> up with twigs and bark until <subject-pronoun> died."
 	)
 	DependsOn(
 		Stat.Evasion--,
