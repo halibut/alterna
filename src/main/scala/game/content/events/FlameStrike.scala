@@ -20,7 +20,7 @@ object FlameStrike extends CharacterEvent {
   )
   
   FlavorText (
-    "One day, while <name> was out and about, minding <possessive-pronoun> own business, a fire<animal> launched a flame ball right at <possessive-pronoun> <bodyPart> for no fucking reason whatsoever! (Dick.)"
+    "One day, while <name> was out and about, minding <possessive-pronoun> own business, a fire<animal> launched a flame ball right at <possessive-pronoun> <bodyPart> for no fucking reason whatsoever!"
   )
   
   new Outcome {

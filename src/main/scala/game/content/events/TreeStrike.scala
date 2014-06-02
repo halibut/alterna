@@ -19,7 +19,7 @@ object TreeStrike extends CharacterEvent {
   )
   
   FlavorText (
-    "One day, as <name> strolled through the forest, a <adjective> tree decided to flail its branches at <object-pronoun>!",
+    "One day, as <name> strolled through the forest, <adjective> tree decided to flail its branches at <object-pronoun>!",
 	"While <name> was in the woods, a tree suddenly rose out of the ground right beneath <object-pronoun>!"  
   )
   

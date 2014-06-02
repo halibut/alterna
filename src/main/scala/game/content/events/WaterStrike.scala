@@ -86,7 +86,7 @@ new Outcome {
 
   new Outcome{
     FlavorText(
-		"And <subject-pronoun> was killed instantly.",
+		"<subject-pronoun> was killed instantly.",
 		"And <name>'s last thought was that <subject-pronoun> sure wished <subject-pronoun> had taken swimming lessons."
 	)
 	DependsOn(
