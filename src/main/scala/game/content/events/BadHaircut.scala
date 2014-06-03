@@ -11,8 +11,8 @@ object BadHaircut extends CharacterEvent {
   Name = "Bad Haircut"
 
   TriggeredBy (
-    YearlyChance(1,30),
-    Stat.Luck-- Chance(1,10)
+    YearlyChance(1,200),
+    Stat.Luck-- Chance(1,50)
   )
  
   Variables (

@@ -31,7 +31,7 @@ object CharacterEventHelper {
     
     family.foreach{f => 
 	    //Set parent/child relationships
-	    for(p <- f.heads){
+	    for(p <- f.heads.filterNot(_.isDeceased)){
 	      val parentEvent = LifeEvent(NewRelationship, child.birthDate.get, child, "Child "+child.firstName+" was born!")
 	      p.lifeEvents.add(parentEvent)
 	      p.relationships.add(Relationship(parentEvent, p, child, ParentOf, Random.rand.randInt(100,255)))
@@ -39,7 +39,7 @@ object CharacterEventHelper {
 	    }
 	    
 	    //Set sibling relationships
-	    for(s <- f.children){
+	    for(s <- f.children.filterNot(_.isDeceased)){
 	      val siblingEvent = LifeEvent(NewRelationship, child.birthDate.get, child, "Sibling "+child.firstName+" was born!")
 	      s.lifeEvents.add(siblingEvent)
 	      s.relationships.add(Relationship(siblingEvent, s, child, SiblingsWith, Random.rand.randInt(50,255)))

@@ -3,6 +3,7 @@ package game.entity.event
 import org.joda.time.DateTime
 import game.entity.character.Character
 import org.joda.time.format.DateTimeFormat
+import game.tools.DateUtils._
 
 
 case class LifeEvent(
@@ -12,6 +13,6 @@ case class LifeEvent(
     val description:String
 ){
   override def toString():String = {
-    DateTimeFormat.forPattern("MM-dd-yyyy").print(date) + " - " + description 
+    date.fmtDate("MM-dd-yyyy") + " - " + description 
   }
 }

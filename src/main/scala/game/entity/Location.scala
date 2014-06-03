@@ -16,5 +16,9 @@ class Location() {
     def removeCharacter(character:Character):Unit = {
       characters = characters.filterNot(_ == character)
     }
+    
+    def livingCharacters:Seq[Character] = {
+      characters.filterNot(_.isDeceased)
+    }
 }
 

@@ -5,6 +5,7 @@ import game.entity.event.Event
 import game.random.Bag
 import game.entity.character.Character
 import org.joda.time.DateTime
+import game.tools.StringUtils._
 
 abstract class Outcome(implicit val event:Event) {
   event.addOutcome(this)
@@ -35,6 +36,12 @@ abstract class Outcome(implicit val event:Event) {
     results.foreach{ result =>
       result.updateCharacter(char, date)
     }
+  }
+  
+  private[event] def getFlavorText(vars:Map[String,String]):String = {
+    val fText = flavorText.get.getOrElse("").replaceVars(vars,"<",">").capitalize
+    
+    fText.capitalizeSentences
   }
 }
 

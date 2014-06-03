@@ -37,8 +37,12 @@ class CharacterRelationships {
     }
   }
   
+  def remove(char:Character):Unit = {
+    relationships = relationships.filterNot(_._1 == char)
+  }
+  
   def removeAll:Unit = {
-    relationships = Map()
+    relationships = Map().withDefault(x => Seq[Relationship]())
   }
   
   override def toString():String = {

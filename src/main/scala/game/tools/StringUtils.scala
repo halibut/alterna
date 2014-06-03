@@ -29,9 +29,37 @@ object StringUtils {
     newStr
   }
   
-  implicit class ReplaceVarsImplicit(val str:String) extends AnyVal{
-    def replaceVars(vars:Map[String,String], prefix:String = "${",postfix:String = "}") = {
+  def capitalizeSentences(str:String):String = {
+    var prev = ""
+    for(ch <- str.trim) yield {
+      val test = prev + ch
+      val newChar = 
+      if(prev.isEmpty){
+        ch.toString.capitalize.head
+      }
+      else if(test.matches(".*?\\.\\.\\.\\s+[a-z]")){
+        ch
+      }
+      else if(test.matches(".*?[\\.\\?\\!]\\)*\\s+[a-z]")){
+        ch.toString.capitalize.head
+      }
+      else{
+        ch
+      }
+      
+      prev = test.takeRight(5)
+      
+      newChar
+    }
+  }
+  
+  implicit class StringUtilsImplicit(val str:String) extends AnyVal{
+    def replaceVars(vars:Map[String,String], prefix:String = "${",postfix:String = "}"):String = {
       StringUtils.replaceVars(str, vars, prefix, postfix)
+    }
+    
+    def capitalizeSentences:String = {
+      StringUtils.capitalizeSentences(str)
     }
   }
 }

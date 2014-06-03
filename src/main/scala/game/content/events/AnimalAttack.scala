@@ -11,7 +11,7 @@ object AnimalAttack extends CharacterEvent {
   Name = "Animal Attack"
 
   TriggeredBy (
-    YearlyChance(1,20)
+    YearlyChance(1,200)
   )
   
   Variables (

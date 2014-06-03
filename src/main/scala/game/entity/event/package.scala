@@ -11,14 +11,21 @@ import game.entity.character.RelationshipType
 
 package object event {
   
+  //Triggers
   def AnotherEvent:EventTrigger = NeverTrigger;
   
   def Chance(chances:Int,outOf:Int):Double = chances.toDouble / outOf.toDouble;
   
   def Choose(options:String*):ChoiceVariable = new ChoiceVariable(options);
   
+  def Age(from:Int,to:Int) = new AgeTrigger(from, to)
+  
   def YearlyChance(prob:Double):ChanceTrigger = new ChanceTrigger(prob);
   def YearlyChance(chances:Int, outOf:Int):ChanceTrigger = YearlyChance(Chance(chances,outOf));
+  
+  //Implicit conversions
+  implicit def triggerToMultiTrigger(trigger:EventTrigger) = new MultiTrigger(Seq(trigger),true) 
+  implicit def relationshipToTrigger(relType:RelationshipType) = new RelationshipTypeTrigger(relType)
   
   implicit def statAndWeightToLikelihood(statAndWeight: (Stat, StatWeight)): StatBasedLikelihood = {
     new StatBasedLikelihood(statAndWeight)

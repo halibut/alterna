@@ -16,4 +16,14 @@ class StringUtilsTest {
     
     assertEquals("This is a cool string.", result)
   }
+  
+  @Test
+  def testCapitalizeSentences(){
+    val test = "this is a test sentence!  it should capitalize all of this (hopefully?) i guess we'll see. another... sentence."
+    val expected = "This is a test sentence!  It should capitalize all of this (hopefully?) I guess we'll see. Another... sentence."
+      
+    val result = test.capitalizeSentences
+    
+    assertEquals(expected, result)
+  }
 }

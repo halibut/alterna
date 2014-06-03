@@ -11,7 +11,7 @@ object FlameStrike extends CharacterEvent {
   Name = "Flame Strike"
 
   TriggeredBy (
-    YearlyChance(1,100)
+    YearlyChance(1,500)
   )
   
     Variables (
@@ -96,7 +96,7 @@ new Outcome{
 		Stat.Speed-
 	)
 	Result(
-	    //Event.Death
+	    UnnaturalDeath
 	)
   }
 }

@@ -1,6 +1,5 @@
 package game.tools
 
-import scala.collection.immutable.HashSet
 import scala.reflect.runtime.universe
 import scala.reflect.{ClassTag,classTag}
 import scala.io.Source
@@ -10,7 +9,7 @@ import java.io.File
 abstract class PluginRegistry[T : ClassTag] {
   private val cls = classTag[T].runtimeClass
 
-  private var registry = HashSet[T]()
+  private var registry = Set[T]()
   
   def registerPlugin(plugin:T):Unit = {
     println("Loaded plugin "+plugin.getClass.getName()+" ["+cls.getSimpleName()+"]")
@@ -44,7 +43,11 @@ abstract class PluginRegistry[T : ClassTag] {
     }
   }
   
-  def registeredPlugins:HashSet[T] = registry
+  def registeredPlugins:Set[T] = registry
   
+  def pluginsBySubType[ST <: T : ClassTag]:Set[ST] = {
+    val ct = classTag[ST]
+    registry.filter(p => ct.runtimeClass.isAssignableFrom(p.getClass)).asInstanceOf[Set[ST]]
+  }
   
 }

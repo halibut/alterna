@@ -7,7 +7,7 @@ import game.entity.event.outcome.SelfRelation
 import game.entity.character.Character
 
 trait TriggerableEvent {
-  self:Event =>
+  self:CharacterEvent =>
  
   override def isTriggered(character:Character):Boolean = {
     false

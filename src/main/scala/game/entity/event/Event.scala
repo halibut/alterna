@@ -43,14 +43,11 @@ trait Event {
     this.eventName = eventName
   }
   
-  def isTriggered(character:Character):Boolean = {
-    val triggers = this.triggeredBy.filter{l =>
-      l.isTriggered(character)
-    } 
+  protected def getFlavorText(vars:Map[String,String]):String = {
+    val fText = flavorText.get.getOrElse("").replaceVars(vars,"<",">").capitalize
     
-    !triggers.isEmpty
+    fText.capitalizeSentences
   }
-  
   
 }
 

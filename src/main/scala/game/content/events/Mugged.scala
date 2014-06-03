@@ -11,7 +11,7 @@ object Mugged extends CharacterEvent {
   Name = "Mugged"
 
   TriggeredBy (
-    YearlyChance(1,100),
+    YearlyChance(1,200),
     Stat.Strength-- Chance(1,50)
   )
   
@@ -133,7 +133,7 @@ object Mugged extends CharacterEvent {
 		Personality.Pacifist---
 	)
 	Result(
-		//Event.Death
+		UnnaturalDeath
 	)
   }
 	

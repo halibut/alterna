@@ -11,7 +11,7 @@ object LightningStrike extends CharacterEvent {
   Name = "Lightning Strike"
 
   TriggeredBy (
-    YearlyChance(1,200)
+    YearlyChance(1,500)
   )
   
     Variables (
@@ -94,7 +94,7 @@ new Outcome {
 		Stat.Spirit--
 	)
 	Result(
-		//Event.Death
+		UnnaturalDeath
 	)
 }
 }

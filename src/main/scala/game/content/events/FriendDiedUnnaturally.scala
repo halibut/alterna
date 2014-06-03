@@ -3,7 +3,7 @@ package game.content.events
 import game.entity.event._
 import game.entity.event.outcome._
 
-object FriendDiedUnnaturally extends RelationshipEvent with TriggerableEvent {
+object FriendDiedUnnaturally extends RelationshipEvent {
   
   Name = "Friend Died Unnaturally"
 
@@ -17,7 +17,7 @@ object FriendDiedUnnaturally extends RelationshipEvent with TriggerableEvent {
   )
   
   FlavorText (
-    "<name>'s <relationship-type> died."
+    "<name>'s <relationship-type>, <relationship-name>, <option>."
   )
   
   new Outcome {

@@ -20,6 +20,8 @@ import game.content.events.AnimalAttack
 import game.entity.character.CharacterQuality
 import game.entity.data.CharacterLevelRates
 import game.entity.event.CharacterEvent
+import scala.collection.immutable.HashSet
+import game.tools.DateUtils._
 
 class WorldBuilder {
 
@@ -116,18 +118,24 @@ class WorldBuilder {
       loc
     }
 
+    //Simulate the world for a number of years
     for (year <- 0 until 50) {
+      
+      println("***********************************************")
+      println(s"SIMULATING WORLD, YEAR ${world.year.fmtDate()}, FOR ${world.livingCharacters.size} CHARACTERS")
+      
+      //Simulate events that only happen to a single character
       for (char <- world.livingCharacters) {
         
         for(lvls <- 0 until CharacterLevelRates.rates(char.age)){
         	char.levelUp
         }
         
-        for (event <- EventPlugins.registeredPlugins) {
+        for (event <- EventPlugins.characterEvents) {
           if(event.isTriggered(char)){
 	          event match {
 	            case e:CharacterEvent => {
-	              val lifeEvent = e.resolve(char)
+	              val lifeEvent = e.resolve(char, Some(world.year))
 	              char.lifeEvents.add(lifeEvent)
 	            }
 	            case _ =>
@@ -135,8 +143,36 @@ class WorldBuilder {
           }
           
         }
-
       }
+      
+      //Simulate events that are relationship-based
+      //First find all pairs of characters that are already in a relationship
+      var pairs = HashSet[(Character,Character)]()
+      for(char1 <- world.livingCharacters;
+          char2 <- char1.relationships.all.map(_._1);
+          if(!char2.isDeceased)){
+        pairs += char1 -> char2
+      }
+      
+      //Next find all pairs of characters who are not in a relationship, 
+      //but are in the same location
+      for(loc <- world.locations;
+    	  char1 <- loc.livingCharacters;
+    	  char2 <- loc.livingCharacters;
+    	  if(char1 != char2);
+    	  if(char1.relationships(char2).isEmpty)){
+        
+        pairs += char1 -> char2
+      }
+      
+      //Now, calculate all relationship events
+      for(pair <- pairs;
+          event <- EventPlugins.relationshipEvents){
+        if(event.isTriggered(pair._1,pair._2)){
+          event.resolve(pair._1,pair._2,Some(world.year))
+        }
+      }
+      
 
       world.year = world.year.year().addToCopy(1)
     }
