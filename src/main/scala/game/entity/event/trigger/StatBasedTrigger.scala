@@ -8,6 +8,13 @@ import game.random.Random
 class StatBasedTrigger(statAndWeight:(Stat,StatWeight), probability:Double) extends EventTrigger{
   val (stat, weight) = statAndWeight
 
+  override def isTriggered(td:TriggerData):Boolean = {
+    td match {
+      case ocd:OneCharTriggerData => isTriggered(ocd.character)
+      case _ => false
+    }
+  }
+  
   def isTriggered(character:Character):Boolean = {
     val s = character.stats(stat).toDouble / character.level.toDouble
     val req = weight match{

@@ -4,12 +4,16 @@ import game.entity.character.Character
 import game.random.Bag
 import game.tools.StringUtils._
 import org.joda.time.DateTime
+import game.entity.event.trigger.OneCharTriggerData
+import game.entity.event.trigger.OneCharTriggerData
 
 trait CharacterEvent extends Event {
   
   def isTriggered(character:Character):Boolean = {
+    val td = new OneCharTriggerData(character)
+    
     val triggers = this.triggeredBy.filter{l =>
-      l.isTriggered(character)
+      l.isTriggered(td)
     } 
     
     !triggers.isEmpty

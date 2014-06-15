@@ -25,7 +25,7 @@ package object event {
   
   //Implicit conversions
   implicit def triggerToMultiTrigger(trigger:EventTrigger) = new MultiTrigger(Seq(trigger),true) 
-  implicit def relationshipToTrigger(relType:RelationshipType) = new RelationshipTypeTrigger(relType)
+  implicit def relationshipToTrigger(relType:RelationshipType) = new RelationshipBasedTrigger((relType,None))
   
   implicit def statAndWeightToLikelihood(statAndWeight: (Stat, StatWeight)): StatBasedLikelihood = {
     new StatBasedLikelihood(statAndWeight)
@@ -73,6 +73,15 @@ package object event {
     def -(chance:Double) = new PersonalityBasedTrigger((personality, StatWeight.SlightNegative),chance)
     def --(chance:Double) = new PersonalityBasedTrigger((personality, StatWeight.ModerateNegative),chance)
     def ---(chance:Double) = new PersonalityBasedTrigger((personality, StatWeight.HeavyNegative),chance)
+  }
+  
+  implicit class TriggerImplicitOps(val trigger:EventTrigger) extends AnyVal {
+    def Chance(d:Double) = new MultiTrigger(Seq(trigger,new ChanceTrigger(d)),true)
+    def Chance(chances:Int,outOf:Int) = new MultiTrigger(Seq(trigger,new ChanceTrigger(chances.toDouble / outOf.toDouble)),true)
+    
+    def &&(otherTrigger:EventTrigger) = new MultiTrigger(Seq(trigger,otherTrigger),true)
+    def ||(otherTrigger:EventTrigger) = new MultiTrigger(Seq(trigger,otherTrigger),false)
+    def unary_! = new NotTrigger(trigger)
   }
 
   

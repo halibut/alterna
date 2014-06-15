@@ -18,6 +18,8 @@ object CharacterEventHelper {
     p2.relationships.add(Relationship(m2, p2, p1, MarriedTo, s2))
   }
   
+  
+  
   def birth(family:Option[Family], child:Character) = {
     if(child.age >= 0){
 	    for(age <- 0 until child.age;

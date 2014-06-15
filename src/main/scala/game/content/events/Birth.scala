@@ -13,7 +13,7 @@ object Birth extends RelationshipEvent {
   Name = "Birth"
 
   TriggeredBy (
-    Age(18,50) and Other(Age(18,50)) and RelationshipType.MarriedTo Chance(1,10)
+    Age(18,50) && Other(Age(18,50)) && RelationshipType.MarriedTo Chance(1,10)
   )
   
   Variables (

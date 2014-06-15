@@ -6,9 +6,7 @@ public enum RelationshipType {
 	ParentOf("child"),
 	ChildOf("parent"),
 	SiblingsWith("sibling"),
-	CousinsWith("cousin"),
-	GrandParentOf("grandchild"),
-	Acquaintences("acquaintence"),
+	AcquaintencesWith("acquaintence"),
 	FriendsWith("friend"),
 	InLoveWith("love interest"),
 	EnemiesWith("enemy")
@@ -25,4 +23,6 @@ public enum RelationshipType {
 	}
 
 	
+	public static final int MIN_VAL = -255;
+	public static final int MAX_VAL = 255;
 }

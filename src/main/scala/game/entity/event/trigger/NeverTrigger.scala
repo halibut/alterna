@@ -6,7 +6,7 @@ import game.random.Random
 
 object NeverTrigger extends EventTrigger {
   
-   def isTriggered(character:Character):Boolean = {
+   def isTriggered(triggerData:TriggerData):Boolean = {
      false 
    }
   

@@ -7,42 +7,30 @@ import game.tools.StringUtils._
 import org.joda.time.DateTime
 import game.entity.character.RelationshipType
 import game.entity.event.trigger.EventTrigger
-import game.entity.event.trigger.RelationshipTypeTrigger
+import game.entity.event.trigger.RelationshipBasedTrigger
 import game.entity.event.trigger.MultiTrigger
+import game.entity.event.trigger.NotTrigger
+import game.entity.event.trigger.TriggerData
+import game.entity.event.trigger.TwoCharTriggerData
+import game.entity.event.trigger.OneCharTriggerData
+import game.entity.event.trigger.TwoCharTriggerData
 
 trait RelationshipEvent extends Event {
   
   case class Other(val trigger:EventTrigger) extends EventTrigger {
-    override def isTriggered(char:Character):Boolean = {
-      trigger.isTriggered(char)
+    override def isTriggered(td:TriggerData):Boolean = {
+      td match {
+        case tcd:TwoCharTriggerData => trigger.isTriggered(new OneCharTriggerData(tcd.char1))
+        case _ => false
+      }
     } 
   }
   
-  def relTrigger(trigger:EventTrigger, char1:Character, char2:Character):Boolean = {
-    trigger match{
-        case o:Other => {
-          o.isTriggered(char2)
-        }
-        case r:RelationshipTypeTrigger => {
-          !char1.relationships(char2,r.relType).isEmpty
-        }
-        case m:MultiTrigger => {
-          m.seq.map(relTrigger(_,char1,char2)).foldLeft(m.requireAll){(v1, v2) =>
-              if(m.requireAll){
-            	  v1 && v2
-              }
-              else{
-            	  v1 || v2
-              }
-          }
-        }
-        case _ => trigger.isTriggered(char1)
-      }
-  }
-  
   def isTriggered(character:Character, character2:Character):Boolean = {
+    val td = new TwoCharTriggerData(character, character2) 
+      
     val triggers = this.triggeredBy.filter{l =>
-      relTrigger(l, character, character2)
+      l.isTriggered(td)
     } 
     
     !triggers.isEmpty

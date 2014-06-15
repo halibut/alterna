@@ -9,6 +9,13 @@ import game.entity.character.Personality
 class PersonalityBasedTrigger(persAndWeight:(Personality,StatWeight), probability:Double) extends EventTrigger{
   val (pers, weight) = persAndWeight
 
+  override def isTriggered(td:TriggerData):Boolean = {
+    td match {
+      case ocd:OneCharTriggerData => isTriggered(ocd.character)
+      case _ => false
+    }
+  }
+  
   def isTriggered(character:Character):Boolean = {
     val s = (character.personality(pers) - pers.getMin()).toDouble / pers.getRange().toDouble
     val req = weight match{
