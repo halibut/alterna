@@ -48,8 +48,8 @@ class CharacterRelationships {
   override def toString():String = {
     relationships.toSeq.map{relEntry =>
       relEntry._2.map{rel =>
-        rel.relationshipType.name()+"("+rel.strength+")"
-      }.mkString(", ") + " " + relEntry._1.fullName 
+        f"""${rel.relationshipType.name()}(${rel.strength} - ${rel.from.personality.alignment(rel.to.personality)}%1.2f)"""
+      }.mkString(", ") + f"""${relEntry._1.fullName}""" 
     }.mkString("\n")
   }
 }

@@ -16,18 +16,19 @@ class TriggerRelationshipEventResult(val eventAndRelations: (RelationshipEvent, 
       if (!toChar.isDeceased)
     ) {
 
-      val ev = event.resolve(toChar, character, Some(date))
+      if (event.canTrigger(toChar, character)) {
+        val ev = event.resolve(toChar, character, Some(date))
 
-      ev.foreach { e =>
-        e.eventType match {
-          case LifeEventType.EndRelationship => {
-            toChar.relationships.remove(character)
+        ev.foreach { e =>
+          e.eventType match {
+            case LifeEventType.EndRelationship => {
+              toChar.relationships.remove(character)
+            }
+            case _ => {}
           }
-          case _ => {}
+          toChar.lifeEvents.add(e)
         }
-        toChar.lifeEvents.add(e)
       }
-
     }
   }
 }

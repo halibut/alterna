@@ -23,3 +23,10 @@ class SelfRelation extends Affects {
     Seq(character)
   }
 }
+
+class OtherRelation extends Affects {
+  var other:Option[Character] = None
+  override def affected(character:Character):Seq[Character] = {
+    other.map{Seq(_)}.getOrElse(Seq())
+  }
+}

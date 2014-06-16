@@ -19,7 +19,7 @@ public enum Personality {
 	}
 
 	public int getMin(){
-		return -255;
+		return -getMax();
 	}
 	public int getMax(){
 		return 255;
@@ -27,5 +27,11 @@ public enum Personality {
 	
 	public int getRange(){
 		return getMax() - getMin();
+	}
+	
+	public double normalized(int strength){
+		double value = (double)strength / (double)getMax();
+		
+		return Math.max(-1.0, Math.min(1.0, value));
 	}
 }

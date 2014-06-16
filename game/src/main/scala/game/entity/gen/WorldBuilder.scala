@@ -68,6 +68,7 @@ class WorldBuilder {
       val character = CharacterCreator.initCharacter
       world.addCharacter(character)
       character.location = Some(loc)
+      loc.addCharacter(character)
 
       if (family.heads.size < 2) {
         val birthDate = world.year.year().addToCopy(-20 - Random.rand.randInt(40))
@@ -156,13 +157,19 @@ class WorldBuilder {
       
       //Next find all pairs of characters who are not in a relationship, 
       //but are in the same location
-      for(loc <- world.locations;
+      val locPairs = for(loc <- world.locations;
     	  char1 <- loc.livingCharacters;
     	  char2 <- loc.livingCharacters;
-    	  if(char1 != char2);
-    	  if(char1.relationships(char2).isEmpty)){
-        
-        pairs += char1 -> char2
+    	  if(char1 != char2)) yield{
+        char1 -> char2
+      }
+      
+      val nonRelLocPairs = locPairs.filter{ case (char1,char2) =>
+        char1.relationships(char2).isEmpty
+      }
+      
+      nonRelLocPairs.foreach{ pair =>
+        pairs = pairs + pair
       }
       
       //Now, calculate all relationship events

@@ -94,5 +94,6 @@ package object event {
   }
   
   def AllRelations:Affects = new CharacterRelations(RelationshipType.values:_*)
+  def OtherCharacter:Affects = new OtherRelation()
 
 }

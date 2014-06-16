@@ -43,5 +43,9 @@ abstract class Outcome(implicit val event:Event) {
     
     fText.capitalizeSentences
   }
+  
+  def getResults():Seq[Result] = {
+    this.results 
+  }
 }
 
