@@ -7,33 +7,18 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 	
-	<artifactId>alterna-game</artifactId>
+	<artifactId>alterna-utils</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>${project.artifactId}</name>
 	<packaging>jar</packaging>
-	<description>Alterna Game</description>
+	<description>Alterna Utility Code</description>
 	<inceptionYear>2014</inceptionYear>
 
 
 	<dependencies>
 		<dependency>
-			<groupId>org.alterna</groupId>
-			<artifactId>alterna-utils</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-	
-		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
-		</dependency>
-
-		<!-- Local dependencies that aren't in a Maven Repo (in lib directory) -->
-		<dependency>
-			<groupId>net.davidashen</groupId>
-			<artifactId>texhyphj</artifactId>
-			<version>1.1</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/texhyphj.jar</systemPath>
 		</dependency>
 
 	</dependencies>

@@ -11,6 +11,7 @@
 	
 	<modules>
         <module>game</module>
+        <module>utils</module>
     </modules>
 
 	<properties>
